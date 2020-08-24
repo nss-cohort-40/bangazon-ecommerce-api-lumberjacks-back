@@ -1,0 +1,72 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "12345678",
+            "is_superuser": false,
+            "username": "Billy123",
+            "first_name": "Billy",
+            "email": "bill@billson.com",
+            "is_staff": false,
+            "is_active": true,
+            "last_name": "Billson"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "87654321",
+            "is_superuser": false,
+            "username": "Susie123",
+            "first_name": "Susie",
+            "email": "susie@susans.com",
+            "is_staff": false,
+            "is_active": true,
+            "last_name": "Susans"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "13243546",
+            "is_superuser": false,
+            "username": "Joe123",
+            "first_name": "Joe",
+            "email": "joe@montana.com",
+            "is_staff": false,
+            "is_active": true,
+            "last_name": "Montana"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "password": "98765432",
+            "is_superuser": false,
+            "username": "Eric123",
+            "first_name": "Eric",
+            "email": "eric@andre.com",
+            "is_staff": false,
+            "is_active": true,
+            "last_name": "Andre"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields": {
+            "password": "34215678",
+            "is_superuser": false,
+            "username": "Margs123",
+            "first_name": "Margarita",
+            "email": "margarita@smith.com",
+            "is_staff": false,
+            "is_active": true,
+            "last_name": "Smith"
+        }
+    }
+]
