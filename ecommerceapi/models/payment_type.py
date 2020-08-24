@@ -9,9 +9,9 @@ class PaymentType(models.Model):
 
     merchant_name = models.CharField(max_length=25)
     account_number = models.CharField(max_length=25)
-    expiration_date = models.DateTimeField(auto_now=True)
+    expiration_date = models.DateField(blank=True, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateField(blank=True, null=True, auto_now=True)
 
     class Meta:
         verbose_name = ("Payment_Type")
