@@ -1,0 +1,227 @@
+[
+    {
+        "model": "ecommerceapi.product",
+        "pk": 1,
+        "fields": {
+            "title": "AR-15",
+            "customer_id": 1,
+            "price": 1200.00,
+            "description": "An AR-15 style rifle is a lightweight semi-automatic rifle based on the ArmaLite AR-15 design, which is itself a scaled-down derivative of Eugene Stoner's AR-10 design.",
+            "quantity": 10,
+            "location": "Nashville, TN",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/2/28/Stag2wi_.jpg",
+            "created_at": "2020-08-24",
+            "product_type_id": 1
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 2,
+        "fields": {
+            "title": "Plasma Rifle",
+            "customer_id": 1,
+            "price": 10000.00,
+            "description": "The Type-25 Directed Energy Rifle[2] (T25 DER),[4] more commonly known as the plasma rifle, is a fully automatic rifle, formerly serving as a Covenant infantry weapon.",
+            "quantity": 10,
+            "location": "Nashville, TN",
+            "image": "https://www.halopedia.org/images/4/44/H2A_T25DER.png",
+            "created_at": "2020-08-24",
+            "product_type_id": 1
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 3,
+        "fields": {
+            "title": "Ray Gun",
+            "customer_id": 1,
+            "price": 10000.00,
+            "description": "A raygun is a science-fiction directed-energy weapon that releases energy, usually with destructive effect.",
+            "quantity": 5,
+            "location": "Nashville, TN",
+            "image": "https://images-na.ssl-images-amazon.com/images/I/61bkIbsEGML._SL1500_.jpg",
+            "created_at": "2020-08-24",
+            "product_type_id": 1
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 4,
+        "fields": {
+            "title": "TV",
+            "customer_id": 2,
+            "price": 1000.00,
+            "description": "A television set or television receiver, more commonly called a television, TV, TV set, telly, or tele, is a device that combines a tuner, display, and loudspeakers, for the purpose of viewing and hearing television broadcasting through satellites or cables, or viewing and hearing a computer.",
+            "quantity": 5,
+            "location": "Nashville, TN",
+            "image": "https://webobjects2.cdw.com/is/image/CDW/6108709?$product-main$",
+            "created_at": "2020-08-24",
+            "product_type_id": 2
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 5,
+        "fields": {
+            "title": "Xbox40",
+            "customer_id": 5,
+            "price": 500.00,
+            "description": "The original Xbox was released on November 15, 2001, in North America, February 22, 2002, in Japan, and March 14, 2002, in Australia and Europe. It was Microsoft's first foray into the gaming console market.",
+            "quantity": 5,
+            "location": "Nashville, TN",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Microsoft-Xbox-One-Console-Set-wKinect.jpg/2560px-Microsoft-Xbox-One-Console-Set-wKinect.jpg",
+            "created_at": "2020-08-24",
+            "product_type_id": 2
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 6,
+        "fields": {
+            "title": "Playstation800",
+            "customer_id": 3,
+            "price": 600.00,
+            "description": "The original PlayStation, released in Japan on December 3, 1994, was the first of the ubiquitous PlayStation series of console and hand-held game devices. It has included successor consoles and upgrades including the Net Yaroze (a special black PlayStation with tools and instructions to program PlayStation games and applications), PS one (a smaller version of the original) and the PocketStation (a handheld which enhances PlayStation games and also acts as a memory card).",
+            "quantity": 2,
+            "location": "Nashville, TN",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/PS3-Consoles-Set.jpg/1920px-PS3-Consoles-Set.jpg",
+            "created_at": "2020-08-24",
+            "product_type_id": 2
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 7,
+        "fields": {
+            "title": "Toaster",
+            "customer_id": 2,
+            "price": 50.00,
+            "description": "A toaster is an electric small appliance designed to expose various types of sliced bread to radiant heat, browning the bread so it becomes toast.",
+            "quantity": 5,
+            "location": "Nashville, TN",
+            "image": "data:image/jpeg;base64,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",
+            "created_at": "2020-08-24",
+            "product_type_id": 3
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 8,
+        "fields": {
+            "title": "Blender",
+            "customer_id": 3,
+            "price": 60.00,
+            "description": "A blender (sometimes called a liquidiser in British English) is a kitchen and laboratory appliance used to mix, purée, or emulsify food and other substances. A stationary blender consists of a blender container with a rotating metal blade at the bottom, powered by an electric motor that is in the base.",
+            "quantity": 5,
+            "location": "Nashville, TN",
+            "image": "https://target.scene7.com/is/image/Target/GUEST_678159fd-3482-4ef0-af0f-9ede45a1aba7",
+            "created_at": "2020-08-24",
+            "product_type_id": 3
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 9,
+        "fields": {
+            "title": "Can Opener",
+            "customer_id": 4,
+            "price": 10.00,
+            "description": "A can opener (in North American English and Australian English) or tin opener (sometimes used in British English) is a mechanical device used to open tin cans (metal cans). Although preservation of food using tin cans had been practiced since at least 1772 in the Netherlands, the first can openers were not patented until 1855 in England and 1858 in the United States.",
+            "quantity": 5,
+            "location": "Nashville, TN",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Kitchen-Modern-Can-Opener.jpg/600px-Kitchen-Modern-Can-Opener.jpg",
+            "created_at": "2020-08-24",
+            "product_type_id": 3
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 10,
+        "fields": {
+            "title": "Rubber Ducky",
+            "customer_id": 1,
+            "price": 5.00,
+            "description": "A rubber duck is a toy shaped like a stylized duck, generally yellow with a flat base.",
+            "quantity": 50,
+            "location": "Nashville, TN",
+            "image": "https://images-na.ssl-images-amazon.com/images/I/71LgxJzwFKL._SL1500_.jpg",
+            "created_at": "2020-08-24",
+            "product_type_id": 4
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 11,
+        "fields": {
+            "title": "Mr. Potato Head",
+            "customer_id": 5,
+            "price": 5.00,
+            "description": "Mr. Potato Head is an American toy consisting of a plastic model of a potato which can be decorated with a variety of plastic parts that can attach to the main body.",
+            "quantity": 10,
+            "location": "Nashville, TN",
+            "image": "https://secure.img1-fg.wfcdn.com/im/05713066/resize-h800%5Ecompr-r85/8377/83778475/Mr+Potato+Head+Disney/Pixar+Toy+Story+4+Cardboard+Standup.jpg",
+            "created_at": "2020-08-24",
+            "product_type_id": 4
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 12,
+        "fields": {
+            "title": "Stuffed Dinosaur",
+            "customer_id": 2,
+            "price": 5.00,
+            "description": "A stuffed toy is a toy with an outer fabric sewn from a textile and stuffed with flexible material. They are known by many names, such as plushies, stuffed animals, plush toys, or stuffies. In Britain and Australia, they may be called soft toys or cuddly toys.",
+            "quantity": 12,
+            "location": "Nashville, TN",
+            "image": "https://m.media-amazon.com/images/I/71Cn52r1vzL._AC_SS350_.jpg",
+            "created_at": "2020-08-24",
+            "product_type_id": 4
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 13,
+        "fields": {
+            "title": "Monkey Wrench",
+            "customer_id": 3,
+            "price": 15.00,
+            "description": "The monkey wrench is a type of adjustable wrench, a 19th century American refinement of 18th-century English coach wrenches.",
+            "quantity": 15,
+            "location": "Nashville, TN",
+            "image": "https://bloximages.chicago2.vip.townnews.com/madison.com/content/tncms/assets/v3/editorial/a/8b/a8b32816-fbb5-11df-808f-001cc4c002e0/4cf39eed1b0d3.preview-1024.jpg?crop=1024%2C768%2C0%2C91&resize=1200%2C900&order=crop%2Cresize",
+            "created_at": "2020-08-24",
+            "product_type_id": 5
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 14,
+        "fields": {
+            "title": "Hacksaw",
+            "customer_id": 4,
+            "price": 15.00,
+            "description": "A hacksaw is a fine-toothed saw, originally and mainly made for cutting metal. The equivalent saw for cutting wood is usually called bow saw.",
+            "quantity": 20,
+            "location": "Nashville, TN",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Tool-hacksaw.jpg",
+            "created_at": "2020-08-24",
+            "product_type_id": 5
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 15,
+        "fields": {
+            "title": "Power Sander",
+            "customer_id": 5,
+            "price": 15.00,
+            "description": "A sander is a power tool used to smooth surfaces by abrasion with sandpaper. Sanders have a means to attach the sandpaper and a mechanism to move it rapidly contained within a housing with means to hand-hold it or fix it to a workbench.",
+            "quantity": 30,
+            "location": "Nashville, TN",
+            "image": "https://images-na.ssl-images-amazon.com/images/I/818d%2Bq4nBKL._AC_SL1500_.jpg",
+            "created_at": "2020-08-24",
+            "product_type_id": 5
+        }
+    }
+]

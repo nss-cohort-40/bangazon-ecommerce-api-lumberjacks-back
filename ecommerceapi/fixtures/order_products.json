@@ -1,0 +1,122 @@
+[
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 1,
+        "fields": {
+            "order_id": 1,
+            "product_id": 11
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 2,
+        "fields": {
+            "order_id": 1,
+            "product_id": 12
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 3,
+        "fields": {
+            "order_id": 1,
+            "product_id": 13
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 4,
+        "fields": {
+            "order_id": 2,
+            "product_id": 13
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 5,
+        "fields": {
+            "order_id": 2,
+            "product_id": 14
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 6,
+        "fields": {
+            "order_id": 2,
+            "product_id": 1
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 7,
+        "fields": {
+            "order_id": 3,
+            "product_id": 1
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 8,
+        "fields": {
+            "order_id": 3,
+            "product_id": 7
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 9,
+        "fields": {
+            "order_id": 3,
+            "product_id": 9
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 10,
+        "fields": {
+            "order_id": 4,
+            "product_id": 8
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 11,
+        "fields": {
+            "order_id": 4,
+            "product_id": 7
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 12,
+        "fields": {
+            "order_id": 4,
+            "product_id": 4
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 13,
+        "fields": {
+            "order_id": 5,
+            "product_id": 4
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 14,
+        "fields": {
+            "order_id": 5,
+            "product_id": 3
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 15,
+        "fields": {
+            "order_id": 5,
+            "product_id": 7
+        }
+    }
+]

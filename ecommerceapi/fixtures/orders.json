@@ -1,0 +1,42 @@
+[
+    {
+        "model": "ecommerceapi.order",
+        "pk": 1,
+        "fields": {
+            "customer_id": 1,
+            "payment_type_id": 1
+        }
+    },
+    {
+        "model": "ecommerceapi.order",
+        "pk": 2,
+        "fields": {
+            "customer_id": 2,
+            "payment_type_id": 3
+        }
+    },
+    {
+        "model": "ecommerceapi.order",
+        "pk": 3,
+        "fields": {
+            "customer_id": 3,
+            "payment_type_id": 5
+        }
+    },
+    {
+        "model": "ecommerceapi.order",
+        "pk": 4,
+        "fields": {
+            "customer_id": 4,
+            "payment_type_id": 6
+        }
+    },
+    {
+        "model": "ecommerceapi.order",
+        "pk": 5,
+        "fields": {
+            "customer_id": 5,
+            "payment_type_id": 7
+        }
+    }
+]

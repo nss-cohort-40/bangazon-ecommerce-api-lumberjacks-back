@@ -1,0 +1,47 @@
+[
+    {
+        "model": "ecommerceapi.customer",
+        "pk": 1,
+        "fields": {
+            "user_id": 1,
+            "address": "625 Mechanic Street, Dawsonville, GA 30534",
+            "phone_number": "(671) 739-2909"
+        }
+    },
+    {
+        "model": "ecommerceapi.customer",
+        "pk": 2,
+        "fields": {
+            "user_id": 2,
+            "address": "714 Campfire Road, Kalispell, MT 59901",
+            "phone_number": "(784) 268-8578"
+        }
+    },
+    {
+        "model": "ecommerceapi.customer",
+        "pk": 3,
+        "fields": {
+            "user_id": 3,
+            "address": "9780 N. Edgemont Street, Charlotte, NC 28205",
+            "phone_number": "(987) 978-3922"
+        }
+    },
+    {
+        "model": "ecommerceapi.customer",
+        "pk": 4,
+        "fields": {
+            "user_id": 4,
+            "address": "764 Logan Ave., Greensburg, PA 15601",
+            "phone_number": "(834) 611-8769"
+        }
+    },
+    {
+        "model": "ecommerceapi.customer",
+        "pk": 5,
+        "fields": {
+            "user_id": 5,
+            "address": "9799 Pheasant Lane, Owatonna, MN 55060",
+            "phone_number": "(923) 566-7937"
+        }
+    }
+]

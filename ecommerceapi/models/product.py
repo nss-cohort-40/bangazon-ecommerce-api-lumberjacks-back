@@ -15,7 +15,7 @@ class Product(models.Model):
     quantity = models.IntegerField()
     location = models.CharField(max_length=75)
     image = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateField(blank=True, null=True, auto_now=True)
     product_type = models.ForeignKey(ProductType, on_delete=models.DO_NOTHING)
 
     class Meta:
