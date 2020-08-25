@@ -19,7 +19,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
             view_name='product',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'title', 'customer', 'price', 'description', 'quantity', 'location', 'image', 'created_at', 'product_type' )
+        fields = ('id', 'url', 'title', 'customer_id', 'customer', 'price', 'description', 'quantity', 'location', 'image', 'created_at', 'product_type' )
 
 class Products(ViewSet):
     '''Products for Bangazon Ecommerce Site'''
@@ -28,11 +28,11 @@ class Products(ViewSet):
         '''Handle POST operations
         
         Returns:
-            Response -- JSON serialized Attraction instance
+            Response -- JSON serialized Product instance
         '''
 
         new_product = Product()
-        customer = Customer.objects.get(user=request.user)
+        customer = Customer.objects.get(user=request.auth.user)
         product_type = ProductType.objects.get(pk=request.data['product_type_id'])
 
         new_product.title = request.data['title']
