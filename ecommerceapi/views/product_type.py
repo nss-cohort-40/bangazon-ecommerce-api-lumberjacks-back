@@ -3,7 +3,7 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from ecommerceapi.models import ProductType
+from ecommerceapi.models import ProductType, Product
 
 class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for product types.
@@ -11,13 +11,22 @@ class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
         serializers
     """
 
+    products = serializers.HyperlinkedRelatedField(
+        queryset=Product.objects.all(),
+        view_name="product-detail",
+        many=True,
+        required=False,
+        lookup_field="pk"
+    )
+
     class Meta:
         model = ProductType
         url = serializers.HyperlinkedIdentityField(
             view_name="product_type",
             lookup_field="id"
         )
-        fields = ("id", "url", "name")
+        fields = ("id", "url", "name", "products")
+        depth = 1
 
 class ProductTypes(ViewSet):
     """Product Types for Bangazon eCommerce site."""
