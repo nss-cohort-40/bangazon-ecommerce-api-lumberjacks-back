@@ -1,3 +1,5 @@
+"""This file contains methods to register or login a user."""
+
 import json
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
