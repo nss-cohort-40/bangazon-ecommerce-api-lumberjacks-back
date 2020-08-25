@@ -22,6 +22,7 @@ from ecommerceapi.views import *
 
 
 router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'products', Products, 'product')
 
 urlpatterns = [
     path('', include(router.urls)),
