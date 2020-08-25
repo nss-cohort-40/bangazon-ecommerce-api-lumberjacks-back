@@ -3,7 +3,7 @@ from django.db import models
 
 
 class ProductType(models.Model):
-    
+
     """This class defines the ProductTypes for the Bangazon eCommerce application """
 
     name = models.CharField(max_length=50)
