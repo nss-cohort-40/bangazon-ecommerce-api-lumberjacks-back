@@ -21,7 +21,10 @@ class CustomerSerializer(serializers.HyperlinkedModelSerializer):
             "id",
             "user",
             "address",
-            "phone_number"
+            "phone_number",
+            "first_name",
+            "last_name",
+            "date_joined"
         )
 
 class Customers(ViewSet):
@@ -39,16 +42,15 @@ class Customers(ViewSet):
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
-
     
     def list(self, request):
-        """Handle GET requests to current user
 
-        Returns:
-            Response -- JSON representation of current user
-        """
-        customer = Customer.objects.get(user=request.auth.user)
-        customers = Customer.objects.filter(customer=customer)
+        if request.user.id:
+            customers = Customer.objects.filter(user=request.user)
+
+        else:
+            customers = Customer.objects.all()
         serializer = CustomerSerializer(
             customers, many=True, context={'request': request})
+
         return Response(serializer.data)
