@@ -54,11 +54,13 @@ class Products(ViewSet):
 
         products = Product.objects.all()
 
-        product_type = self.request.query_params.get('product_type', None)
-        if product_type is not None:
-            products = products.filter(product_type__id=product_type)
+        last_twenty_products = products[:20]
+
+        # product_type = self.request.query_params.get('product_type', None)
+        # if product_type is not None:
+        #     products = products.filter(product_type__id=product_type)
 
         serializer = ProductSerializer(
-            products, many=True, context={'request': request}
+            last_twenty_products, many=True, context={'request': request}
         )
         return Response(serializer.data)
