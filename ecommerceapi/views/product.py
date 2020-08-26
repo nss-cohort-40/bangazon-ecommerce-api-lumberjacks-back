@@ -29,7 +29,8 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
             "location",
             "image",
             "created_at",
-            "product_type"
+            "product_type",
+            "product_type_id",
         )
 
 class Products(ViewSet):
@@ -43,6 +44,8 @@ class Products(ViewSet):
 
         try:
             product = Product.objects.get(pk=pk)
+            product_type = ProductType.objects.get(pk=product.product_type_id)
+            product.product_type__id = product_type.id
             serializer = ProductSerializer(product, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
