@@ -5,3 +5,4 @@ from .register import login_user
 from .product_type import ProductTypes
 from .product import Products
 from .customer import Customers
+from .payment_type import PaymentTypes
