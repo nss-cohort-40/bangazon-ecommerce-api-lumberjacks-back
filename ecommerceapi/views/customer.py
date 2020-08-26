@@ -4,12 +4,31 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from ecommerceapi.models import Customer
+from django.contrib.auth.models import User
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = User
+        url = serializers.HyperlinkedIdentityField(
+            view_name="user",
+            lookup_field="id"
+        )
+        fields = (
+            "id",
+            "first_name",
+            "last_name",
+            "date_joined",
+            "email"
+        )
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for products.
     Arguments:
         serializers
     """
+
+    user = UserSerializer()
 
     class Meta:
         model = Customer
@@ -21,10 +40,7 @@ class CustomerSerializer(serializers.HyperlinkedModelSerializer):
             "id",
             "user",
             "address",
-            "phone_number",
-            "first_name",
-            "last_name",
-            "date_joined"
+            "phone_number"
         )
 
 class Customers(ViewSet):
@@ -46,10 +62,11 @@ class Customers(ViewSet):
     def list(self, request):
 
         if request.user.id:
-            customers = Customer.objects.filter(user=request.user)
+            customers = Customer.objects.filter(user=request.user.id)
 
         else:
             customers = Customer.objects.all()
+
         serializer = CustomerSerializer(
             customers, many=True, context={'request': request})
 
