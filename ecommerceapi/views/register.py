@@ -26,13 +26,11 @@ def login_user(request):
         username = req_body['username']
         password = req_body['password']
         authenticated_user = authenticate(username=username, password=password)
-
         # If authentication was successful, respond with their token
         if authenticated_user is not None:
             token = Token.objects.get(user=authenticated_user)
             data = json.dumps({"valid": True, "token": token.key})
             return HttpResponse(data, content_type='application/json')
-
         else:
             # Bad login details were provided. So we can't log the user in.
             data = json.dumps({"valid": False})
@@ -59,7 +57,6 @@ def register_user(request):
         first_name=req_body['first_name'],
         last_name=req_body['last_name'],
     )
-
     customer = Customer.objects.create(
         address=req_body['address'],
         phone_number=req_body['phone_number'],
