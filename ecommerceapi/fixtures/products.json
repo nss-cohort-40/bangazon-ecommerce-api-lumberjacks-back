@@ -223,5 +223,155 @@
             "created_at": "2020-08-24",
             "product_type_id": 5
         }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 16,
+        "fields": {
+            "title": "Glock 19",
+            "customer_id": 3,
+            "price": 800.00,
+            "description": "The Glock is a series of polymer-framed, short recoil-operated, locked-breech semi-automatic pistols designed and produced by Austrian manufacturer Glock Ges.m.b.H.",
+            "quantity": 20,
+            "location": "Nashville, TN",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Glock_17_%286825676904%29_%D0%B1%D0%B5%D0%B7_%D1%84%D0%BE%D0%BD%D0%B0.jpg",
+            "created_at": "2020-08-25",
+            "product_type_id": 1
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 17,
+        "fields": {
+            "title": "Super Soaker",
+            "customer_id": 1,
+            "price": 100.00,
+            "description": "Super Soaker is a brand of recreational water gun that uses manually-pressurized air to shoot water with greater power, range, and accuracy than conventional squirt pistols.",
+            "quantity": 15,
+            "location": "Nashville, TN",
+            "image": "https://images-na.ssl-images-amazon.com/images/I/71L5In4zBOL._AC_SX425_.jpg",
+            "created_at": "2020-08-25",
+            "product_type_id": 1
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 18,
+        "fields": {
+            "title": "Drone",
+            "customer_id": 2,
+            "price": 500.00,
+            "description": "An unmanned aerial vehicle (often called a drone) is an aircraft that is not operated by a pilot on board. Drones may have an onboard computer to take care of adjustments to wind and changes in air pressure. Sometimes they are programmed to a particular target.",
+            "quantity": 10,
+            "location": "Nashville, TN",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Autumn_Drone_%28cropped%29.jpg",
+            "created_at": "2020-08-25",
+            "product_type_id": 2
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 19,
+        "fields": {
+            "title": "Digital Watch",
+            "customer_id": 3,
+            "price": 400.00,
+            "description": "A watch that displays the time in numerical digits rather than by hands on a dial.",
+            "quantity": 30,
+            "location": "Nashville, TN",
+            "image": "https://imgaz3.staticbg.com/thumb/large/oaupload/banggood/images/FC/9A/e79e73ea-8b83-4c5f-9f5a-693e0cbbf4d4.jpg",
+            "created_at": "2020-08-25",
+            "product_type_id": 2
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 20,
+        "fields": {
+            "title": "Crockpot",
+            "customer_id": 4,
+            "price": 100.00,
+            "description": "A slow cooker, also known as a crock-pot (after a trademark owned by Sunbeam Products but sometimes used generically in the English-speaking world), is a countertop electrical cooking appliance used to simmer at a lower temperature than other cooking methods, such as baking, boiling, and frying.",
+            "quantity": 15,
+            "location": "Nashville, TN",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Crock_pot.jpg/1200px-Crock_pot.jpg",
+            "created_at": "2020-08-25",
+            "product_type_id": 3
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 21,
+        "fields": {
+            "title": "Coffee Maker",
+            "customer_id": 5,
+            "price": 50.00,
+            "description": "Coffeemakers or coffee machines are cooking appliances used to brew coffee. While there are many different types of coffeemakers using several different brewing principles, in the most common devices, coffee grounds are placed into a paper or metal filter inside a funnel, which is set over a glass or ceramic coffee pot, a cooking pot in the kettle family.",
+            "quantity": 35,
+            "location": "Nashville, TN",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Consumer_Reports_-_Zojirushi_coffeemaker_alt.tif/lossy-page1-1920px-Consumer_Reports_-_Zojirushi_coffeemaker_alt.tif.jpg",
+            "created_at": "2020-08-25",
+            "product_type_id": 3
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 22,
+        "fields": {
+            "title": "Fidget Spinner",
+            "customer_id": 1,
+            "price": 10.00,
+            "description": "A fidget spinner is a toy that consists of a ball bearing in the center of a multi-lobed (typically two or three) flat structure made from metal or plastic designed to spin along its axis with very little effort. Fidget spinners became trending toys in 2017, although similar devices had been invented as early as 1993.",
+            "quantity": 40,
+            "location": "Nashville, TN",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Fidget_spinner_red%2C_cropped.jpg/1920px-Fidget_spinner_red%2C_cropped.jpg",
+            "created_at": "2020-08-25",
+            "product_type_id": 4
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 23,
+        "fields": {
+            "title": "Rubik's cube",
+            "customer_id": 3,
+            "price": 10.00,
+            "description": "DescriptionThe Rubik's Cube is a 3-D combination puzzle invented in 1974 by Hungarian sculptor and professor of architecture Ernő Rubik. Originally called the Magic Cube, the puzzle was licensed by Rubik to be sold by Ideal Toy Corp.",
+            "quantity": 10,
+            "location": "Nashville, TN",
+            "image": "https://c1-ebgames.eb-cdn.com.au/merchandising/images/packshots/811842bd0aa24025bcd2709e0ebd464e_Large.jpg",
+            "created_at": "2020-08-25",
+            "product_type_id": 4
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 24,
+        "fields": {
+            "title": "Wire Cutters",
+            "customer_id": 5,
+            "price": 20.00,
+            "description": "Diagonal pliers (or wire cutters or diagonal cutting pliers or diagonal cutters or side cutting pliers) are pliers intended for the cutting of wire (they are generally not used to grab or turn anything). The plane defined by the cutting edges of the jaws intersects the joint rivet at an angle or on a diagonal, hence the name.",
+            "quantity": 50,
+            "location": "Nashville, TN",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Side_cutters.jpg",
+            "created_at": "2020-08-25",
+            "product_type_id": 5
+        }
+    },
+    {
+        "model": "ecommerceapi.product",
+        "pk": 25,
+        "fields": {
+            "title": "Screwdriver",
+            "customer_id": 4,
+            "price": 20.00,
+            "description": "A screwdriver is a tool, manual or powered, used for screwing and unscrewing screws. ",
+            "quantity": 50,
+            "location": "Nashville, TN",
+            "image": "data:image/png;base64,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",
+            "created_at": "2020-08-25",
+            "product_type_id": 5
+        }
     }
 ]
