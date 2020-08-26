@@ -5,7 +5,6 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from ecommerceapi.models import Product, Customer, Order
-from .product import ProductSerializer
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for orders
@@ -19,7 +18,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
             view_name='order',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'customer_id', 'customer', 'payment_type_id' 'payment_type', 'created_at')
+        fields = ('id', 'url', 'customer_id', 'customer', 'payment_type_id', 'created_at')
 
 class Orders(ViewSet):
     '''Orders for Bangazon eCommerce site.'''
@@ -43,7 +42,7 @@ class Orders(ViewSet):
 
     def retrieve(self, request, pk=None):
         '''
-        Handle Get request for orders
+        Handle Get request for single orders
         Returns: 
             Response -- JSON serialized product instance
         '''
@@ -56,4 +55,45 @@ class Orders(ViewSet):
         except Exception as ex:
             return HttpResponseServerError(ex)
 
-    def list(self)     
+    def update(self, request, pk=None):
+        """Handle PUT requests for an individual order item
+
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+        order = Order.objects.get(pk=pk)
+        order.created_at = request.data["created_at"]
+        order.save()
+        
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+    def destroy(self, request, pk=None):
+        '''
+        Handle DELETE requests for a single order
+        Returns:
+            Response -- 200, 404, or 500 status code
+        '''
+        try: 
+            order = Order.objects.get(pk=pk)
+            order.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        
+        except Order.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def list(self, request):
+        '''
+        Handle GET requests to order resource
+        Returns:
+            Response -- JSON serialized list of customer orders
+        '''
+        customer = Customer.objects.get(user=request.auth.user)
+        orders = Order.objects.filter(customer=customer)
+        serializer = OrderSerializer(
+            orders, many=True, context={'request': request}
+        )
+        return Response(serializer.data)
