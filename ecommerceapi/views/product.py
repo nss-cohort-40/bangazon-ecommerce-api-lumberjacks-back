@@ -102,6 +102,7 @@ class Products(ViewSet):
     
     def cart(self, request):
         current_user = 6
+        # Customer.objects.get(user=request.auth.user)
 
         try:
             open_order = Order.objects.get(customer=current_user, payment_type=None)
