@@ -118,5 +118,30 @@
             "order_id": 5,
             "product_id": 7
         }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 16,
+        "fields": {
+            "order_id": 6,
+            "product_id": 8
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 17,
+        "fields": {
+            "order_id": 6,
+            "product_id": 9
+        }
+    },
+    {
+        "model": "ecommerceapi.orderproduct",
+        "pk": 18,
+        "fields": {
+            "order_id": 6,
+            "product_id": 10
+        }
     }
+    
 ]

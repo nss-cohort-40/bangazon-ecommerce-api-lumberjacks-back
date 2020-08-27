@@ -8,8 +8,8 @@ class OrderProduct(models.Model):
 
     """This is the Model for Order Product for the Bangazon eCommerce application"""
 
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="cart")
+    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, related_name="cart")
 
     class Meta:
         verbose_name = ("Order_Product")

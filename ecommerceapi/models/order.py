@@ -9,7 +9,7 @@ class Order(models.Model):
     """This is the Model for a Order for the Bangazon eCommerce application"""
 
     customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, related_name='orders')
-    payment_type = models.ForeignKey(PaymentType, on_delete=models.DO_NOTHING, related_name='orders')
+    payment_type = models.ForeignKey(PaymentType, on_delete=models.DO_NOTHING, related_name='orders', blank=True, null=True)
     created_at = models.DateField(blank=True, null=True)
 
     class Meta:
