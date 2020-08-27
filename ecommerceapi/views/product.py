@@ -109,7 +109,8 @@ class Products(ViewSet):
     
     def cart(self, request):
         current_user = Customer.objects.get(user=request.auth.user)
-
+        #if user does not have an Order where paymenttype = null then create Order()
+        #or do nothing / message/ redirect
         try:
             open_order = Order.objects.get(customer=current_user, payment_type=None)
             products_on_order = Product.objects.filter(cart__order=open_order)
