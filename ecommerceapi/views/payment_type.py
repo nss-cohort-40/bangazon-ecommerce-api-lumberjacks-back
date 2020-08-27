@@ -1,5 +1,6 @@
 """View module for handling requests about payment types"""
 from django.http import HttpResponseServerError
+from rest_framework.decorators import action
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
@@ -36,7 +37,7 @@ class PaymentTypes(ViewSet):
         return Response(serializer.data)
 
     @action(methods=['get'], detail=False)
-    def user_pay_options(self, request):
+    def userPay(self, request):
         current_user = Customer.objects.get(user=request.auth.user)
 
         user_pay_types = PaymentType.objects.all(customer=current_user)
