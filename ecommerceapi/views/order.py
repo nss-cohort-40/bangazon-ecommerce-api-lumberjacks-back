@@ -4,8 +4,22 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from ecommerceapi.models import Product, Customer, Order
+from ecommerceapi.models import Product, Customer, Order, OrderProduct
 
+class OrderProductSerializer(serializers.HyperlinkedModelSerializer):
+    """JSON serializer for order product
+
+    Arguments:
+        serializers
+    """
+    class Meta:
+        model = OrderProduct
+        url = serializers.HyperlinkedIdentityField(
+            view_name='order_product',
+            lookup_field='id'
+        )
+        fields = ('id', 'url', 'order_id', 'order', 'product_id', 'product')
+        
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for orders
 
@@ -29,16 +43,50 @@ class Orders(ViewSet):
         Returns:
             Response -- JSON serialized product instance
         '''
+        #if user has order where payment type = null
+        #then post to OrderProducts(orderID)
+        #else run this 
+        #then post to OrderProducts with new OrderID
 
-        new_order = Order()
-        new_order.customer_id = request.data['customer_id']
-        new_order.payment_type_id = request.data['payment_type_id']
-        new_order.save()
+        current_user = Customer.objects.get(user=request.auth.user)
+        try:
+            open_order = Order.objects.get(customer=current_user, payment_type=None)
+            product = Product.objects.get(pk=request.data['product_id'])
+            
+            order_product = OrderProduct()
+            order_product.order = open_order
+            order_product.product = product
+            
+            order_product.save()
 
-        serializer = OrderSerializer(
-            new_order, context={'request': request}
-        )
-        return Response(serializer.data)
+            serializer = OrderProductSerializer(
+                order_product, context={'request': request}
+            )
+            return Response(serializer.data)
+            
+                
+                # return Response(serializer.data)
+
+        except Order.DoesNotExist:
+            new_order = Order()
+            new_order.customer = current_user
+            new_order.save()
+            
+            serializer = OrderSerializer(
+                new_order, context={'request': request}
+            )
+
+            last_order_id = Order.objects.latest('id')
+            new_order_product = OrderProduct()
+            new_order_product.order = last_order_id
+            new_order_product.product = product
+
+            new_order_product.save()
+
+            serializer = OrderProductSerializer(
+                new_order_product, context={'request': request}
+            )
+            return Response(serializer.data) 
 
     def retrieve(self, request, pk=None):
         '''
@@ -75,6 +123,7 @@ class Orders(ViewSet):
         '''
         try: 
             order = Order.objects.get(pk=pk)
+            
             order.delete()
 
             return Response({}, status=status.HTTP_204_NO_CONTENT)
