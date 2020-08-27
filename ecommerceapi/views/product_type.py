@@ -55,4 +55,5 @@ class ProductTypes(ViewSet):
         serializer = ProductTypeSerializer(
             product_types, many=True, context={'request': request}
         )
+
         return Response(serializer.data)

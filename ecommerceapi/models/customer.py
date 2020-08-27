@@ -11,6 +11,3 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=95)
     phone_number = models.CharField(max_length=10)
-
-    class Meta:
-        ordering = (F('user.date_joined').asc(nulls_last=True),)

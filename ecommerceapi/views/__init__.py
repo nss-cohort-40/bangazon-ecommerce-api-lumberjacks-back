@@ -7,3 +7,4 @@ from .product import Products
 from .customer import Customers
 from .order import Orders
 from .order_products import OrderProducts
+from .payment_type import PaymentTypes
