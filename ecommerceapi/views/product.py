@@ -118,4 +118,3 @@ class Products(ViewSet):
 
         serializer = ProductSerializer(products_on_order, many=True, context={'request': request})
         return Response(serializer.data)
->>>>>>> master
