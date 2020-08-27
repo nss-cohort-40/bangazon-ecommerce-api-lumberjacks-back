@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from rest_framework.decorators import action
-from ecommerceapi.models import Product, Customer, ProductType
+from ecommerceapi.models import Product, Customer, ProductType, Order
     
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for products.
@@ -96,4 +96,18 @@ class Products(ViewSet):
         serializer = ProductSerializer(
             last_twenty_products, many=True, context={'request': request}
         )
+        return Response(serializer.data)
+
+    @action(methods=['get'], detail=False)
+    
+    def cart(self, request):
+        current_user = Customer.objects.get(user=request.auth.user)
+
+        try:
+            open_order = Order.objects.get(customer=current_user, payment_type=None)
+            products_on_order = Product.objects.filter(cart__order=open_order)
+        except Order.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = ProductSerializer(products_on_order, many=True, context={'request': request})
         return Response(serializer.data)
