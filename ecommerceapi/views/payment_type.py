@@ -26,6 +26,27 @@ class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
 
 class PaymentTypes(ViewSet):
 
+    def create(self, request):
+        '''Handle POST operations
+
+        Returns:
+            Response -- JSON serialized payment type instance
+        '''
+
+        new_pay_type = PaymentType()
+        customer = Customer.objects.get(user=request.user)
+
+        new_pay_type.merchant_name = request.data['merchantName']
+        new_pay_type.account_number = request.data['accountNumber']
+        new_pay_type.expiration_date = request.data['expirationDate']
+        new_pay_type.customer = customer
+
+        new_pay_type.save()
+
+        serializer = PaymentTypeSerializer(new_pay_type, context={'request': request})
+
+        return Response(serializer.data)
+
     def list(self, request):
 
         payment_types = PaymentType.objects.all()
@@ -33,15 +54,5 @@ class PaymentTypes(ViewSet):
         serializer = PaymentTypeSerializer(
             payment_types, many=True, context={'request': request}
         )
-
-        return Response(serializer.data)
-
-    @action(methods=['get'], detail=False)
-    def userPay(self, request):
-        current_user = Customer.objects.get(user=request.auth.user)
-
-        user_pay_types = PaymentType.objects.all(customer=current_user)
-
-        serializer = PaymentTypeSerializer(user_pay_types, many=True, context={'request': request})
 
         return Response(serializer.data)
