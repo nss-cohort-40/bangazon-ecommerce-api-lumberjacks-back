@@ -3,8 +3,7 @@
         "model": "ecommerceapi.order",
         "pk": 1,
         "fields": {
-            "customer_id": 1,
-            "payment_type_id": 1
+            "customer_id": 1 
         }
     },
     {
@@ -27,8 +26,8 @@
         "model": "ecommerceapi.order",
         "pk": 4,
         "fields": {
-            "customer_id": 4,
-            "payment_type_id": 6
+            "customer_id": 4
+            
         }
     },
     {
@@ -37,6 +36,14 @@
         "fields": {
             "customer_id": 5,
             "payment_type_id": 7
+        }
+    },
+    {
+        "model": "ecommerceapi.order",
+        "pk": 6,
+        "fields": {
+            "customer_id": 6
+            
         }
     }
 ]
