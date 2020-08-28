@@ -94,12 +94,14 @@ class Orders(ViewSet):
         Returns: 
             Response -- JSON serialized product instance
         '''
+        current_user = Customer.objects.get(user=request.auth.user)
         try:
-            order = Order.objects.get(pk=pk)
+            order = Order.objects.get(customer=current_user, payment_type=None)
             serializer = OrderSerializer(
                 order, context={'request': request}
             )
             return Response(serializer.data)
+            
         except Exception as ex:
             return HttpResponseServerError(ex)
 

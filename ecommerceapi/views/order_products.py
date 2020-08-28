@@ -48,7 +48,8 @@ class OrderProducts(ViewSet):
             Response -- JSON serialized product instance
         '''
         try:
-            order_product = Order.objects.get(pk=pk)
+            order = Order.objects.get(customer=current_user, payment_type=None)
+            order_product = Order.objects.filter(cart__order=order)
             serializer = OrderProductSerializer(
                 order_product, context={'request': request}
             )
@@ -63,6 +64,8 @@ class OrderProducts(ViewSet):
             Response -- 200, 404, or 500 status code
         '''
         try: 
+            delete_product.order_id = request.data['order_id']
+            delete_product.product_id = request.data['product_id']
             order_product = OrderProduct.objects.get(pk=pk)
             order_product.delete()
 
