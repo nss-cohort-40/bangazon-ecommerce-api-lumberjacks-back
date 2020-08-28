@@ -53,7 +53,7 @@ class Products(ViewSet):
 
     def create(self, request):
         '''Handle POST operations
-        
+   
         Returns:
             Response -- JSON serialized Product instance
         '''
@@ -89,17 +89,24 @@ class Products(ViewSet):
 
         last_twenty_products = products[:20]
 
-        product_type = self.request.query_params.get('product_type', None)
-        if product_type is not None:
-            products = products.filter(product_type__id=product_type)
+        title = self.request.query_params.get('title', None)
+        if title is not None:
+            products = products.filter(title__startswith=title)
 
-        serializer = ProductSerializer(
-            last_twenty_products, many=True, context={'request': request}
-        )
-        return Response(serializer.data)
+            serializer = ProductSerializer(
+                products, many=True, context={'request': request}
+            )
+            return Response(serializer.data)
+
+        else:
+
+            serializer = ProductSerializer(
+                last_twenty_products, many=True, context={'request': request}
+            )
+            return Response(serializer.data)
 
     @action(methods=['get'], detail=False)
-    
+
     def cart(self, request):
         current_user = Customer.objects.get(user=request.auth.user)
         #if user does not have an Order where paymenttype = null then create Order()
