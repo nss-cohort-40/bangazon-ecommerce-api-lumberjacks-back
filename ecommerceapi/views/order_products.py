@@ -47,6 +47,8 @@ class OrderProducts(ViewSet):
         Returns:
             Response -- JSON serialized product instance
         '''
+        current_user = Customer.objects.get(user=request.auth.user)
+
         try:
             order = Order.objects.get(customer=current_user, payment_type=None)
             order_product = Order.objects.filter(cart__order=order)
@@ -63,11 +65,12 @@ class OrderProducts(ViewSet):
         Returns:
             Response -- 200, 404, or 500 status code
         '''
+        current_user = Customer.objects.get(user=request.auth.user)
         try: 
-            delete_product.order_id = request.data['order_id']
+            open_order = Order.objects.get(customer=current_user, payment_type=None)
+            delete_product = OrderProduct.objects.get(pk=pk)
             delete_product.product_id = request.data['product_id']
-            order_product = OrderProduct.objects.get(pk=pk)
-            order_product.delete()
+            delete_product.delete()
 
             return Response({}, status=status.HTTP_204_NO_CONTENT)
         

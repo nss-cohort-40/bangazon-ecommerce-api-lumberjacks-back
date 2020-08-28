@@ -26,13 +26,21 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     Arguments:
         serializers
     """
+    orderProducts = serializers.HyperlinkedRelatedField(
+        querset=OrderProduct.objects.all(),
+        view_name='orderproducts-detail',
+        many=True,
+        required=False,
+        lookup_field="pk"
+    )
+
     class Meta:
         model = Order
         url = serializers.HyperlinkedIdentityField(
             view_name='order',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'customer_id', 'customer', 'payment_type_id', 'created_at')
+        fields = ('id', 'url', 'customer_id', 'customer', 'payment_type_id', 'orderProducst', 'created_at')
 
 class Orders(ViewSet):
     '''Orders for Bangazon eCommerce site.'''
