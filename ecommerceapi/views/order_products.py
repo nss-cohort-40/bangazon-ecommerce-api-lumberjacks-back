@@ -19,6 +19,7 @@ class OrderProductSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'order_id', 'order', 'product_id', 'product')
+        depth = 2
         
 
 class OrderProducts(ViewSet):
@@ -47,11 +48,8 @@ class OrderProducts(ViewSet):
         Returns:
             Response -- JSON serialized product instance
         '''
-        current_user = Customer.objects.get(user=request.auth.user)
-
         try:
-            order = Order.objects.get(customer=current_user, payment_type=None)
-            order_product = Order.objects.filter(cart__order=order)
+            order_product = OrderProduct.objects.get(pk=pk)
             serializer = OrderProductSerializer(
                 order_product, context={'request': request}
             )
@@ -65,12 +63,9 @@ class OrderProducts(ViewSet):
         Returns:
             Response -- 200, 404, or 500 status code
         '''
-        current_user = Customer.objects.get(user=request.auth.user)
         try: 
-            open_order = Order.objects.get(customer=current_user, payment_type=None)
-            delete_product = OrderProduct.objects.get(pk=pk)
-            delete_product.product_id = request.data['product_id']
-            delete_product.delete()
+            order_product = OrderProduct.objects.get(pk=pk)
+            order_product.delete()
 
             return Response({}, status=status.HTTP_204_NO_CONTENT)
         
