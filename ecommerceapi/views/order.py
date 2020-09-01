@@ -26,13 +26,14 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     Arguments:
         serializers
     """
+
     class Meta:
         model = Order
         url = serializers.HyperlinkedIdentityField(
             view_name='order',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'customer_id', 'customer', 'payment_type_id', 'created_at')
+        fields = ('id', 'url', 'products', 'customer_id', 'customer', 'payment_type_id', 'created_at')
 
 class Orders(ViewSet):
     '''Orders for Bangazon eCommerce site.'''
@@ -94,12 +95,14 @@ class Orders(ViewSet):
         Returns: 
             Response -- JSON serialized product instance
         '''
+        current_user = Customer.objects.get(user=request.auth.user)
         try:
-            order = Order.objects.get(pk=pk)
+            order = Order.objects.get(customer=current_user, payment_type=None)
             serializer = OrderSerializer(
                 order, context={'request': request}
             )
             return Response(serializer.data)
+            
         except Exception as ex:
             return HttpResponseServerError(ex)
 
