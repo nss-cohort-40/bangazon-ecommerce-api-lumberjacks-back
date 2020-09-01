@@ -11,6 +11,7 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, related_name='orders')
     payment_type = models.ForeignKey(PaymentType, on_delete=models.DO_NOTHING, related_name='orders', blank=True, null=True)
     created_at = models.DateField(blank=True, null=True)
+    products = models.ManyToManyField("Product", through=("OrderProduct"))
 
     class Meta:
         verbose_name = ("Order")

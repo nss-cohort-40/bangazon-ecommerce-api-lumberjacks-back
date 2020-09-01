@@ -19,6 +19,7 @@ class OrderProductSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'order_id', 'order', 'product_id', 'product')
+        depth = 2
         
 
 class OrderProducts(ViewSet):
@@ -48,7 +49,7 @@ class OrderProducts(ViewSet):
             Response -- JSON serialized product instance
         '''
         try:
-            order_product = Order.objects.get(pk=pk)
+            order_product = OrderProduct.objects.get(pk=pk)
             serializer = OrderProductSerializer(
                 order_product, context={'request': request}
             )
