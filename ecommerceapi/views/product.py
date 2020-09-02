@@ -135,7 +135,6 @@ class Products(ViewSet):
                 products_on_order = Product.objects.filter(cart__order=open_order)
             except:
                 products_on_order = []
-                # return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
             serializer = ProductSerializer(products_on_order, many=True, context={'request': request})
             return Response(serializer.data)
         #delete product from cart
