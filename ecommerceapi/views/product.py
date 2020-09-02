@@ -115,9 +115,9 @@ class Products(ViewSet):
             try:
                 open_order = Order.objects.get(customer=current_user, payment_type=None)
                 products_on_order = Product.objects.filter(cart__order=open_order)
-            except Order.DoesNotExist as ex:
-                return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-
+            except:
+                products_on_order = []
+                # return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
             serializer = ProductSerializer(products_on_order, many=True, context={'request': request})
             return Response(serializer.data)
         #delete product from cart
