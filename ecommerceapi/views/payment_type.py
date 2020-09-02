@@ -48,7 +48,7 @@ class PaymentTypes(ViewSet):
         return Response(serializer.data)
 
     def list(self, request):
-
+        customer = Customer.objects.get(user=request.auth.user)
         payment_types = PaymentType.objects.all()
 
         serializer = PaymentTypeSerializer(
