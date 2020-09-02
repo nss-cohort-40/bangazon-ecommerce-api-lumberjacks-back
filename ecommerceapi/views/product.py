@@ -90,6 +90,7 @@ class Products(ViewSet):
 
         last_twenty_products = products[:20]
 
+        myproducts = self.request.query_params.get('myproducts', None)
         title = self.request.query_params.get('title', None)
         if title is not None:
             products = products.filter(title__startswith=title)
@@ -98,7 +99,21 @@ class Products(ViewSet):
                 products, many=True, context={'request': request}
             )
             return Response(serializer.data)
+        elif myproducts is not None:
+            customer = Customer.objects.get(user=request.auth.user)
+            products = products.filter(customer=customer)
+            for product in products:
+                orderproducts = OrderProduct.objects.filter(product=product)
+                i = 0
+                for orderproduct in orderproducts:
+                    if orderproduct.order.payment_type is not None:
+                        i = i + 1
+                product.location = f"{product.location} $$${i}"
 
+            serializer = ProductSerializer(
+                products, many=True, context={'request': request}
+            )
+            return Response(serializer.data)
         else:
 
             serializer = ProductSerializer(
