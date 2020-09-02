@@ -86,7 +86,7 @@ class Products(ViewSet):
             Response -- JSON serialized list of product instances
         """
 
-        products = Product.objects.all()
+        products = Product.objects.all().order_by('-pk')
 
         last_twenty_products = products[:20]
 
