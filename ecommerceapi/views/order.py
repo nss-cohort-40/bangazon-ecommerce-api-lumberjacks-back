@@ -110,7 +110,7 @@ class Orders(ViewSet):
                 order, context={'request': request}
             )
             return Response(serializer.data)
-        else :
+        else:
             current_user = Customer.objects.get(user=request.auth.user)
             try:
                 order = Order.objects.get(customer=current_user, payment_type=None)
@@ -163,7 +163,7 @@ class Orders(ViewSet):
             Response -- JSON serialized list of customer orders
         '''
         customer = Customer.objects.get(user=request.auth.user)
-        orders = Order.objects.filter(customer=customer)
+        orders = Order.objects.filter(customer=customer, payment_type=None)
         serializer = OrderSerializer(
             orders, many=True, context={'request': request}
         )
