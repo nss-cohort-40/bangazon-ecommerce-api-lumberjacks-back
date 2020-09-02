@@ -6,7 +6,7 @@ from rest_framework import serializers
 from rest_framework import status
 from rest_framework.decorators import action
 from ecommerceapi.models import Product, Customer, ProductType, Order, OrderProduct
-    
+
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for products.
     Arguments:
@@ -54,7 +54,7 @@ class Products(ViewSet):
 
     def create(self, request):
         '''Handle POST operations
-   
+
         Returns:
             Response -- JSON serialized Product instance
         '''
@@ -90,6 +90,7 @@ class Products(ViewSet):
 
         last_twenty_products = products[:20]
 
+        myproducts = self.request.query_params.get('myproducts', None)
         title = self.request.query_params.get('title', None)
         if title is not None:
             products = products.filter(title__startswith=title)
@@ -98,7 +99,21 @@ class Products(ViewSet):
                 products, many=True, context={'request': request}
             )
             return Response(serializer.data)
+        elif myproducts is not None:
+            customer = Customer.objects.get(user=request.auth.user)
+            products = products.filter(customer=customer)
+            for product in products:
+                orderproducts = OrderProduct.objects.filter(product=product)
+                i = 0
+                for orderproduct in orderproducts:
+                    if orderproduct.order.payment_type is not None:
+                        i = i + 1
+                product.location = f"{product.location} $$${i}"
 
+            serializer = ProductSerializer(
+                products, many=True, context={'request': request}
+            )
+            return Response(serializer.data)
         else:
 
             serializer = ProductSerializer(
@@ -107,17 +122,19 @@ class Products(ViewSet):
             return Response(serializer.data)
 
     @action(methods=['get', 'post', 'put'], detail=False)
-    def cart(self, request, pk=None):
+    def cart(self, request):
+        """
+        Custom action method for getting cart items.
+        """
         current_user = Customer.objects.get(user=request.auth.user)
-        if request.method == "GET": 
+        if request.method == "GET":
             #if user does not have an Order where paymenttype = null then create Order()
             #or do nothing / message/ redirect
             try:
                 open_order = Order.objects.get(customer=current_user, payment_type=None)
                 products_on_order = Product.objects.filter(cart__order=open_order)
-            except Order.DoesNotExist as ex:
-                return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-
+            except:
+                products_on_order = []
             serializer = ProductSerializer(products_on_order, many=True, context={'request': request})
             return Response(serializer.data)
         #delete product from cart
@@ -126,7 +143,4 @@ class Products(ViewSet):
             open_order = Order.objects.get(customer=current_user, payment_type=None)
             product_order = OrderProduct.objects.filter(product_id=product, order=open_order)
             product_order[0].delete()
-            return Response({}, status=status.HTTP_204_NO_CONTENT) 
-
-
-
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
