@@ -6,7 +6,7 @@ from rest_framework import serializers
 from rest_framework import status
 from rest_framework.decorators import action
 from ecommerceapi.models import Product, Customer, ProductType, Order, OrderProduct
-    
+
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for products.
     Arguments:
@@ -54,7 +54,7 @@ class Products(ViewSet):
 
     def create(self, request):
         '''Handle POST operations
-   
+
         Returns:
             Response -- JSON serialized Product instance
         '''
@@ -107,9 +107,12 @@ class Products(ViewSet):
             return Response(serializer.data)
 
     @action(methods=['get', 'post', 'put'], detail=False)
-    def cart(self, request, pk=None):
+    def cart(self, request):
+        """
+        Custom action method for getting cart items.
+        """
         current_user = Customer.objects.get(user=request.auth.user)
-        if request.method == "GET": 
+        if request.method == "GET":
             #if user does not have an Order where paymenttype = null then create Order()
             #or do nothing / message/ redirect
             try:
@@ -118,7 +121,11 @@ class Products(ViewSet):
             except Order.DoesNotExist as ex:
                 return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
-            serializer = ProductSerializer(products_on_order, many=True, context={'request': request})
+            serializer = ProductSerializer(
+                products_on_order,
+                many=True,
+                context={'request': request}
+            )
             return Response(serializer.data)
         #delete product from cart
         elif request.method == 'PUT':
@@ -126,7 +133,4 @@ class Products(ViewSet):
             open_order = Order.objects.get(customer=current_user, payment_type=None)
             product_order = OrderProduct.objects.filter(product_id=product, order=open_order)
             product_order[0].delete()
-            return Response({}, status=status.HTTP_204_NO_CONTENT) 
-
-
-
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
