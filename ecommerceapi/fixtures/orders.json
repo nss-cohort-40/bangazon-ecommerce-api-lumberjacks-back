@@ -42,7 +42,7 @@
         "model": "ecommerceapi.order",
         "pk": 6,
         "fields": {
-            "customer_id": 6
+            "customer_id": 5
             
         }
     }
