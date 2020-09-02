@@ -104,16 +104,23 @@ class Orders(ViewSet):
         Returns:
             Response -- JSON serialized product instance
         '''
-        current_user = Customer.objects.get(user=request.auth.user)
-        try:
-            order = Order.objects.get(customer=current_user, payment_type=None)
+        if pk is not None:
+            order = Order.objects.get(pk=pk)
             serializer = OrderSerializer(
                 order, context={'request': request}
             )
             return Response(serializer.data)
+        else :
+            current_user = Customer.objects.get(user=request.auth.user)
+            try:
+                order = Order.objects.get(customer=current_user, payment_type=None)
+                serializer = OrderSerializer(
+                    order, context={'request': request}
+                )
+                return Response(serializer.data)
 
-        except Exception as ex:
-            return HttpResponseServerError(ex)
+            except Exception as ex:
+                return HttpResponseServerError(ex)
 
     def update(self, request, pk=None):
         """Handle PUT requests for an individual order item
