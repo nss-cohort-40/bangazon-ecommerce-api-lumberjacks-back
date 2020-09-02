@@ -76,7 +76,7 @@ class Orders(ViewSet):
             serializer = OrderSerializer(
                 new_order, context={'request': request}
             )
-
+            product = Product.objects.get(pk=request.data['product_id'])
             last_order_id = Order.objects.latest('id')
             new_order_product = OrderProduct()
             new_order_product.order = last_order_id
