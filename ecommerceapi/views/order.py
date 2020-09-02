@@ -122,7 +122,7 @@ class Orders(ViewSet):
             Response -- Empty body with 204 status code
         """
         order = Order.objects.get(pk=pk)
-        # order.id = request.data['id']
+        order.id = request.data['id']
         order.created_at = datetime.today().strftime('%Y-%m-%d')
         order.customer_id = request.data['customer_id']
         order.payment_type_id = request.data['payment_type_id']
