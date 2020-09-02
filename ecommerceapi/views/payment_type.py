@@ -7,6 +7,7 @@ from rest_framework import serializers
 from ecommerceapi.models import PaymentType, Customer
 
 class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
+    """Payment type serializer"""
 
     class Meta:
         model = PaymentType
@@ -25,6 +26,9 @@ class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 class PaymentTypes(ViewSet):
+    """
+    View set class for payment types.
+    """
 
     def create(self, request):
         '''Handle POST operations
@@ -48,11 +52,20 @@ class PaymentTypes(ViewSet):
         return Response(serializer.data)
 
     def list(self, request):
+        '''Handle GET operations
+
+        Returns:
+            Response -- JSON serialized payment type instance
+        '''
 
         payment_types = PaymentType.objects.all()
 
+        current_user = Customer.objects.get(user=request.auth.user)
+
+        new_payment_types = payment_types.filter(customer=current_user)
+
         serializer = PaymentTypeSerializer(
-            payment_types, many=True, context={'request': request}
+            new_payment_types, many=True, context={'request': request}
         )
 
         return Response(serializer.data)
