@@ -26,6 +26,9 @@ class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 class PaymentTypes(ViewSet):
+    """
+    View set class for payment types.
+    """
 
     def create(self, request):
         '''Handle POST operations
@@ -49,6 +52,11 @@ class PaymentTypes(ViewSet):
         return Response(serializer.data)
 
     def list(self, request):
+        '''Handle GET operations
+
+        Returns:
+            Response -- JSON serialized payment type instance
+        '''
 
         payment_types = PaymentType.objects.all()
 
