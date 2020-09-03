@@ -4,6 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
+from rest_framework import status
 from ecommerceapi.models import PaymentType, Customer
 
 class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
@@ -64,6 +65,26 @@ class PaymentTypes(ViewSet):
         serializer = PaymentTypeSerializer(new_pay_type, context={'request': request})
 
         return Response(serializer.data)
+
+    def destroy(self, request, pk=None):
+        '''
+        Handle DELETE requests for a payment type. Django safedelete is active for this model.
+        
+        Returns:
+            Response -- 200, 404, or 500 status code
+        '''
+        try:
+            payment_type = PaymentType.objects.get(pk=pk)
+
+            payment_type.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        except PaymentType.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
         '''Handle GET operations
