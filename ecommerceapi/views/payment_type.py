@@ -30,6 +30,20 @@ class PaymentTypes(ViewSet):
     View set class for payment types.
     """
 
+    def retrieve(self, request, pk=None):
+        """Handle GET requests for single payment type
+        Returns:
+            Response -- JSON serialized product instance
+        """
+
+        try:
+            payment_type = PaymentType.objects.get(pk=pk)
+            customer = Customer.objects.get(user=request.user)
+            serializer = PaymentTypeSerializer(payment_type, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
     def create(self, request):
         '''Handle POST operations
 
