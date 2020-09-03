@@ -163,8 +163,22 @@ class Orders(ViewSet):
             Response -- JSON serialized list of customer orders
         '''
         customer = Customer.objects.get(user=request.auth.user)
-        orders = Order.objects.filter(customer=customer, payment_type=None)
-        serializer = OrderSerializer(
-            orders, many=True, context={'request': request}
-        )
-        return Response(serializer.data)
+
+        orders = Order.objects.filter(customer_id=customer.id, payment_type=None)
+
+        history = self.request.query_params.get('history', None)
+
+        if history is not None:
+            print('customer_id:', history)
+            order_history = Order.objects.filter(customer_id=history, payment_type_id__isnull=False)
+
+            serializer = OrderSerializer(
+                order_history, many=True, context={'request': request}
+            )
+            return Response(serializer.data)
+
+        else:
+            serializer = OrderSerializer(
+                orders, many=True, context={'request': request}
+            )
+            return Response(serializer.data)
