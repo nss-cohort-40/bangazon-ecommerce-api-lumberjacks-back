@@ -8,6 +8,7 @@ from rest_framework import status
 from rest_framework.decorators import action
 from ecommerceapi.models import Product, Customer, ProductType, Order, OrderProduct
 
+
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for products.
     Arguments:
@@ -97,8 +98,7 @@ class Products(ViewSet):
 
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-    @csrf_exempt
+ 
     def list(self, request):
         """Handle GET requests for all products
         Returns:
