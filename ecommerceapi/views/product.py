@@ -1,5 +1,6 @@
 """View module for handling requests about products"""
 from django.http import HttpResponseServerError
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
@@ -79,7 +80,25 @@ class Products(ViewSet):
 
         return Response(serializer.data)
 
+    def destroy(self, request, pk=None):
+        '''
+        Handle DELETE requests for a single order product
+        Returns:
+            Response -- 200, 404, or 500 status code
+        '''
+        try: 
+            product = Product.objects.get(pk=pk)
+            product.delete()
 
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        
+        except OrderProduct.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    @csrf_exempt
     def list(self, request):
         """Handle GET requests for all products
         Returns:
