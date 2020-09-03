@@ -7,6 +7,29 @@ from rest_framework import serializers
 from rest_framework import status
 from ecommerceapi.models import Product, Customer, Order, OrderProduct
 
+class ProductSerializer(serializers.ModelSerializer):
+    """JSON serializer for products.
+    Arguments:
+        serializers
+    """
+
+    class Meta:
+        model = Product
+        fields = (
+            "id",
+            "title",
+            "customer",
+            "customer_id",
+            "price",
+            "description",
+            "quantity",
+            "location",
+            "image",
+            "created_at",
+            "product_type",
+            "product_type_id",
+        )
+
 class OrderProductSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for order product
 
@@ -28,6 +51,16 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
         serializers
     """
 
+    # products = serializers.HyperlinkedRelatedField(
+    #     queryset=Product.objects.all(),
+    #     view_name="product-detail",
+    #     many=True,
+    #     required=False,
+    #     lookup_field="pk"
+    # )
+
+    products = ProductSerializer(many=True, read_only=True)
+
     class Meta:
         model = Order
         url = serializers.HyperlinkedIdentityField(
@@ -39,10 +72,11 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
             'url',
             'products',
             'customer_id',
-            'customer',
+            # 'customer',
             'payment_type_id',
             'created_at'
         )
+        depth = 2
 
 class Orders(ViewSet):
     '''Orders for Bangazon eCommerce site.'''
@@ -163,8 +197,22 @@ class Orders(ViewSet):
             Response -- JSON serialized list of customer orders
         '''
         customer = Customer.objects.get(user=request.auth.user)
-        orders = Order.objects.filter(customer=customer, payment_type=None)
-        serializer = OrderSerializer(
-            orders, many=True, context={'request': request}
-        )
-        return Response(serializer.data)
+
+        orders = Order.objects.filter(customer_id=customer.id, payment_type=None)
+
+        history = self.request.query_params.get('history', None)
+
+        if history is not None:
+            print('customer_id:', history)
+            order_history = Order.objects.filter(customer_id=history, payment_type_id__isnull=False)
+
+            serializer = OrderSerializer(
+                order_history, many=True, context={'request': request}
+            )
+            return Response(serializer.data)
+
+        else:
+            serializer = OrderSerializer(
+                orders, many=True, context={'request': request}
+            )
+            return Response(serializer.data)
