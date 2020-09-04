@@ -1,4 +1,12 @@
-# Bangazon Django App Project Setup
+## Description
+Bangazon eCommerce is an online marketplace where users can buy and sell products.
+
+## Technologies Used
+* React for UI/UX.
+* Django REST API framework to store and serve data.
+* Cloudinary API to assist in photo upload and storage.
+
+## How To Run
 
 1. Clone down the repo and `cd` into it
 1. Set up your virtual environment:
@@ -10,7 +18,6 @@
 1. Run migrations:
     `python manage.py migrate`
 1. `python manage.py runserver`
-1. Create your application for your API, named `ecommerceapi`
 
 ## ERD
-Here is your [Bangazon eCommerce ERD](https://dbdiagram.io/d/5eb4d6d639d18f5553fedfb5). There should be no changes made to your ERD without approval from your product manager.
+[Bangazon eCommerce ERD](https://dbdiagram.io/d/5eb4d6d639d18f5553fedfb5).
